@@ -39,3 +39,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Uploaded Images - Ignore all uploaded files
+public/uploads/
+public/uploads/*
+
+# Image files (uploaded by users)
+*.jpeg
+*.jpg
+*.png
+*.gif
+*.webp
+*.bmp
+*.tiff
+*.svg
+
+# Exclude specific uploaded image patterns
+**/uploads/**
+**/public/uploads/**
+
+# Keep folder structure but ignore contents
+public/uploads/.gitkeep
