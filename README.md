@@ -1,40 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Post Management System
 
-## Getting Started
+A modern Next.js application for creating, editing, and managing posts with image uploads.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ✨ Create and edit posts with titles, descriptions, status, and dates
+- 🖼️ Image upload functionality with preview
+- 🔍 Filter posts by status and date range
+- 📱 Responsive design with modern UI
+- ⚡ Optimized component structure
+- 🎨 Beautiful Tailwind CSS styling
+
+## 📁 Project Structure
+
+```
+Alphabin_Test/
+├── components/           # Reusable components
+│   ├── Layout/          # Layout components
+│   │   └── Layout.jsx   # Main layout wrapper
+│   ├── UI/              # UI components
+│   │   ├── Header.jsx   # Header component
+│   │   └── Divider.jsx  # Divider component
+│   ├── Forms/           # Form-related components
+│   │   └── ImageUpload.jsx
+│   ├── Post/            # Post-related components
+│   │   ├── PostForm.jsx    # Post creation/editing form
+│   │   ├── PostFilters.jsx # Post filtering component
+│   │   ├── PostList.jsx    # Posts listing component
+│   │   └── PostCard.jsx    # Individual post card
+│   └── index.js         # Component exports
+├── hooks/               # Custom React hooks
+│   └── usePosts.js      # Post management hook
+├── lib/                 # Library configurations
+│   └── mongodb.js       # MongoDB connection
+├── models/              # Database models
+│   └── Post.js          # Post model
+├── pages/               # Next.js pages
+│   ├── api/             # API routes
+│   │   ├── posts/       # Posts API endpoints
+│   │   └── upload.js    # Image upload endpoint
+│   ├── _app.js          # App wrapper
+│   ├── _document.js     # Document wrapper
+│   └── index.js         # Home page
+├── public/              # Static assets
+│   └── uploads/         # Uploaded images
+├── store/               # State management
+│   └── usePostsStore.js # Zustand store
+├── styles/              # Styling
+│   └── globals.css      # Global CSS
+├── utils/               # Utility functions
+│   └── helpers.js       # Helper functions
+└── package.json         # Dependencies and scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technology Stack
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15.3.4 (Pages Router)
+- **Styling**: Tailwind CSS 4
+- **State Management**: Zustand
+- **Form Handling**: React Hook Form + Zod validation
+- **Database**: MongoDB with Mongoose
+- **File Upload**: Multer
+- **HTTP Client**: Axios
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 🚀 Getting Started
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+1. **Install dependencies**:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. **Set up environment variables**:
+   Create a `.env.local` file with your MongoDB connection string:
 
-To learn more about Next.js, take a look at the following resources:
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+3. **Run the development server**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+4. **Open your browser**:
+   Navigate to [http://localhost:3001](http://localhost:3001)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🏗️ Architecture Improvements
+
+### Before Refactoring
+
+- Single massive 558-line `index.js` file
+- All components mixed together
+- No separation of concerns
+- Poor maintainability
+
+### After Refactoring
+
+- ✅ **Modular Components**: Each UI element has its own component
+- ✅ **Custom Hooks**: Business logic extracted to reusable hooks
+- ✅ **Proper File Structure**: Organized by feature and responsibility
+- ✅ **Reusable Components**: Components can be easily reused
+- ✅ **Better Maintainability**: Easy to find and modify specific features
+- ✅ **TypeScript Ready**: Structure supports easy TypeScript migration
+
+## 🔧 Component Breakdown
+
+### Layout Components
+
+- **Layout**: Main page wrapper with meta tags and styling
+- **Header**: Page title and description
+
+### Form Components
+
+- **ImageUpload**: Handles file selection, preview, and validation
+- **PostForm**: Complete form for creating/editing posts
+
+### Post Components
+
+- **PostCard**: Individual post display card
+- **PostList**: Container for all posts with empty state
+- **PostFilters**: Filter controls for posts
+
+### Custom Hooks
+
+- **usePosts**: Manages all post-related state and operations
+
+## 🎨 UI Features
+
+- Modern gradient backgrounds
+- Smooth animations and transitions
+- Responsive design for all screen sizes
+- Intuitive drag-and-drop file upload
+- Real-time image preview
+- Status indicators with emojis
+- Interactive hover effects
+
+## 🔐 API Endpoints
+
+- `GET /api/posts` - Fetch posts with optional filtering
+- `POST /api/posts` - Create a new post
+- `PUT /api/posts/[id]` - Update a post
+- `DELETE /api/posts/[id]` - Delete a post
+- `POST /api/upload` - Upload image files
+
+## 📱 Responsive Design
+
+The application is fully responsive and works seamlessly on:
+
+- 📱 Mobile devices
+- 📱 Tablets
+- 💻 Desktops
+- 🖥️ Large screens
+
+## 🔄 State Management
+
+Uses Zustand for lightweight state management with the following features:
+
+- Post CRUD operations
+- Filter state management
+- Automatic data synchronization
+- Clean and simple API
+
+## 🚀 Performance Optimizations
+
+- Component-based architecture for better re-rendering
+- Optimized image handling
+- Efficient state management
+- Clean code separation
+- Proper error boundaries
+
+---
+
+Made with ❤️ using Next.js and modern React patterns
